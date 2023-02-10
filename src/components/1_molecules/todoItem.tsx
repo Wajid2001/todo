@@ -33,11 +33,21 @@ function TodoItem({ todo }: { todo: ITodo }) {
       <div className='flex gap-2 flex-row justify-between transition-all'>
         {state.editMode ? (
           <>
-            <Input className='w-full' onChange={changeEditedText} value={state.editedText} />
-            <Button appearance='primary' onClick={saveTodo}>
-              Save
-            </Button>
-            <Button onClick={closeEditMode}>Cancel</Button>
+            <Input className='w-full' onChange={changeEditedText} value={state.editedText} onSubmit={saveTodo} />
+
+            <Tooltip
+              content={state.editedText.length > 0 ? 'Save todo' : 'Todo title cannot be empty'}
+              relationship='label'
+            >
+              <Button appearance='primary' onClick={saveTodo} disabled={state.editedText.length === 0}>
+                Save
+              </Button>
+            </Tooltip>
+
+            <Tooltip content={'Cancel editing todo'} relationship='label'>
+              <Button onClick={closeEditMode}>Cancel</Button>
+            </Tooltip>
+
             <Tooltip content='Delete todo' relationship='label'>
               <Button appearance='subtle' icon={<Delete24Regular />} onClick={deleteTodo} />
             </Tooltip>
@@ -47,7 +57,10 @@ function TodoItem({ todo }: { todo: ITodo }) {
             <span className={`${todo.isCompleted && 'line-through'}`} onDoubleClick={openEditMode}>
               {todo.text}
             </span>
-            <Checkbox onClick={toggleTodo} checked={todo.isCompleted} />
+
+            <Tooltip content={todo.isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'} relationship='label'>
+              <Checkbox onClick={toggleTodo} checked={todo.isCompleted} />
+            </Tooltip>
           </>
         )}
       </div>

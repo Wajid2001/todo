@@ -1,10 +1,10 @@
-import { Button, Input } from '@fluentui/react-components';
+import { Button, Input, Tooltip } from '@fluentui/react-components';
 import { memo, useState } from 'react';
 import { useTodo } from '../store/useTodos';
 
 function TodoForm() {
   const [state, setState] = useState({
-    title: '',
+    title: 'What needs to be done?',
   });
 
   const _addTodo = useTodo((s) => s.addTodo);
@@ -25,10 +25,13 @@ function TodoForm() {
 
   return (
     <div className='flex flex-row gap-2 w-full'>
-      <Input className='w-full' placeholder='What needs to be done?' onChange={changeTitle} value={state.title} />
-      <Button appearance='primary' onClick={addTodo}>
-        Add
-      </Button>
+      <Input className='w-full' onChange={changeTitle} value={state.title} />
+
+      <Tooltip content={state.title.length > 0 ? 'Add todo' : 'Todo title cannot be empty'} relationship='label'>
+        <Button appearance='primary' onClick={addTodo} disabled={state.title.length === 0}>
+          Add
+        </Button>
+      </Tooltip>
     </div>
   );
 }
