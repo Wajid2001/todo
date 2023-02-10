@@ -7,11 +7,15 @@ function TodoList() {
 
   return (
     <div>
-      <ol className='list-decimal'>
-        {todos.map((todo) => (
-          <TodoItem todo={todo} key={todo.id} />
-        ))}
-      </ol>
+      {todos.length === 0 ? (
+        <h4 className='text-center'>No Todo </h4>
+      ) : (
+        <ol className='list-decimal'>
+          {todos.map((todo) => (
+            <TodoItem todo={todo} key={todo.id} />
+          ))}
+        </ol>
+      )}
     </div>
   );
 }

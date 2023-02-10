@@ -1,4 +1,5 @@
-import { Button, Checkbox, Input } from '@fluentui/react-components';
+import { Button, Checkbox, Input, Tooltip } from '@fluentui/react-components';
+import { Delete24Regular } from '@fluentui/react-icons';
 import { memo, useState } from 'react';
 import { ITodo, useTodo } from '../store/useTodos';
 
@@ -7,26 +8,20 @@ function TodoItem({ todo }: { todo: ITodo }) {
     editedText: todo.text,
     editMode: false,
   });
-  const { _toggleTodo, editTodo } = useTodo((s) => ({
+  const { _toggleTodo, _deleteTodo, editTodo } = useTodo((s) => ({
     _toggleTodo: s.toggleTodo,
+    _deleteTodo: s.deleteTodo,
     editTodo: s.editTodo,
   }));
 
-  const toggleTodo = () => {
-    _toggleTodo(todo.id);
-  };
-
-  const openEditMode = () => {
-    setState((s) => ({ ...s, editMode: true }));
-  };
+  const toggleTodo = () => _toggleTodo(todo.id);
+  const deleteTodo = () => _deleteTodo(todo.id);
+  const openEditMode = () => setState((s) => ({ ...s, editMode: true }));
+  const closeEditMode = () => setState((s) => ({ ...s, editMode: false }));
 
   const saveTodo = () => {
     editTodo(todo.id, state.editedText);
-    setState((s) => ({ ...s, editMode: false }));
-  };
-
-  const cancelEdit = () => {
-    setState((s) => ({ ...s, editMode: false }));
+    closeEditMode();
   };
 
   const changeEditedText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +37,10 @@ function TodoItem({ todo }: { todo: ITodo }) {
             <Button appearance='primary' onClick={saveTodo}>
               Save
             </Button>
-            <Button onClick={cancelEdit}>Cancel</Button>
+            <Button onClick={closeEditMode}>Cancel</Button>
+            <Tooltip content='Delete todo' relationship='label'>
+              <Button appearance='subtle' icon={<Delete24Regular />} onClick={deleteTodo} />
+            </Tooltip>
           </>
         ) : (
           <>

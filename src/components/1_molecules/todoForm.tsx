@@ -24,7 +24,7 @@ function TodoForm() {
   };
 
   return (
-    <div className='flex flex-row gap-2'>
+    <div className='flex flex-row gap-2 w-full'>
       <Input className='w-full' placeholder='What needs to be done?' onChange={changeTitle} value={state.title} />
       <Button appearance='primary' onClick={addTodo}>
         Add

@@ -15,7 +15,8 @@ export interface IUseTodo {
   deleteTodo: (id: string) => void;
   editTodo: (id: string, text: string) => void;
   clearCompleted: () => void;
-  toggleAll: () => void;
+  markAllCompleted: () => void;
+  markAllInCompleted: () => void;
 }
 
 const useTodo = create(
@@ -74,11 +75,19 @@ const useTodo = create(
           todos: state.todos.filter((todo) => !todo.isCompleted),
         })),
 
-      toggleAll: () =>
+      markAllCompleted: () =>
         set((state) => ({
           todos: state.todos.map((todo) => ({
             ...todo,
-            isCompleted: !state.todos.every((todo) => todo.isCompleted),
+            isCompleted: true,
+          })),
+        })),
+
+      markAllInCompleted: () =>
+        set((state) => ({
+          todos: state.todos.map((todo) => ({
+            ...todo,
+            isCompleted: false,
           })),
         })),
     }),
@@ -89,3 +98,4 @@ const useTodo = create(
 );
 
 export { useTodo };
+
