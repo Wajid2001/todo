@@ -1,10 +1,11 @@
-import { Button } from '@fluentui/react-components';
+import TodoList from './components/2_organisms/todoList';
 
 function App() {
   return (
-    <div>
-      <Button appearance='primary'>Get started</Button>
-      <h1 className='text-3xl font-bold underline'>Todo</h1>
+    <div className='prose mx-auto prose-stone p-4'>
+      <h1>Todo</h1>
+
+      <TodoList />
     </div>
   );
 }
