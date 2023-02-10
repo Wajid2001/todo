@@ -6,6 +6,7 @@ specifiers:
   '@tailwindcss/typography': ^0.5.9
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
+  '@types/uuid': ^9.0.0
   '@vitejs/plugin-react-swc': ^3.0.0
   autoprefixer: ^10.4.13
   postcss: ^8.4.21
@@ -29,6 +30,7 @@ devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
+  '@types/uuid': 9.0.0
   '@vitejs/plugin-react-swc': 3.1.0_vite@4.1.1
   autoprefixer: 10.4.13_postcss@8.4.21
   postcss: 8.4.21
@@ -1440,6 +1442,10 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+
+  /@types/uuid/9.0.0:
+    resolution: {integrity: sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==}
+    dev: true
 
   /@vitejs/plugin-react-swc/3.1.0_vite@4.1.1:
     resolution: {integrity: sha512-xnDULNrkEbtTtRNnMPp+RsuIuIbk1JJV0xY7irchYyv9JJS4uvmc1EYip+qyrnkcX7TQ9c8vCS3AmkQqADI0Fw==}
